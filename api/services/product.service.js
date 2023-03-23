@@ -24,27 +24,23 @@ class ProductsService {
   async create(data) {
     const newProduct = {
       id: faker.datatype.uuid(),
-      ...data,
-    };
+      ...data
+    }
     this.products.push(newProduct);
     return newProduct;
   }
 
   find() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.products);
-      }, 3000);
-    });
+    return this.products;
   }
 
   async findOne(id) {
     const product = this.products.find(item => item.id === id);
     if (!product) {
-      throw boom.notFound('Product not found');
+      throw boom.notFound('product not found');
     }
     if (product.isBlock) {
-      throw boom.conflict('Product is block');
+      throw boom.conflict('product is block');
     }
     return product;
   }
@@ -52,12 +48,12 @@ class ProductsService {
   async update(id, changes) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
-      throw boom.notFound('Product not found');
+      throw boom.notFound('product not found');
     }
     const product = this.products[index];
     this.products[index] = {
       ...product,
-      ...changes,
+      ...changes
     };
     return this.products[index];
   }
@@ -65,7 +61,7 @@ class ProductsService {
   async delete(id) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
-      throw boom.notFound('Product not found');
+      throw boom.notFound('product not found');
     }
     this.products.splice(index, 1);
     return { id };
