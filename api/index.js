@@ -9,7 +9,7 @@ const {
 } = require('./middleware/error.handler');
 
 const app = express();
-const port = 3010;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -38,9 +38,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/api', (req, res) => res.send('Hello World!'));
 
-app.get('/nuevaRuta', (req, res) => res.send('Hello nuevaRuta!'));
+app.get('/api/nuevaRuta', (req, res) => res.send('Hello nuevaRuta!'));
 
 routerApi(app);
 
