@@ -22,7 +22,7 @@ const options = {
 app.use(cors(options));
 
 app.get('/', (req, res) => {
-  res.send('Server on express');
+  res.send('Hola mi server en express');
 });
 
 app.get('/nueva-ruta', (req, res) => {
@@ -37,5 +37,5 @@ app.use(errorHandler);
 
 
 app.listen(port, () => {
-  console.log('App listening on port ' +  port);
+  console.log('Server on port ' +  port);
 });
